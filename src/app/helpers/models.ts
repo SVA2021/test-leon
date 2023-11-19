@@ -9,7 +9,7 @@ export type AuthorT = {
 export type BookT = {
   id: number,
   title: string,
-  author: AuthorT,
+  author: string,
   year: number,
   publisher: string,
 }

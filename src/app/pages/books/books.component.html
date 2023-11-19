@@ -1,1 +1,121 @@
-<p>books works!</p>
+<section class="page-wrapper">
+  <div class="form-wrapper tui-form" [formGroup]="bookForm">
+    <label [tuiLabel]="'Название'" class="tui-form__row">
+      <tui-input formControlName="title"
+                 tuiTextfieldSize="s"
+                 [tuiTextfieldCleaner]="true"
+                 [pseudoFocus]="getError(bookForm.controls.title)"
+      >
+        Введите название книги
+        <input
+          tuiTextfield
+          type="email"
+        />
+      </tui-input>
+    </label>
+    <label [tuiLabel]="'Автор'" class="tui-form__row">
+
+      <tui-select
+        tuiTextfieldSize="s"
+        formControlName="author"
+        [tuiTextfieldLabelOutside]="true"
+      >
+        Выберите автора
+        <tui-data-list-wrapper
+          *tuiDataList
+          [items]="authors"
+        ></tui-data-list-wrapper>
+      </tui-select>
+    </label>
+    <label [tuiLabel]="'Издатель'" class="tui-form__row">
+      <tui-input formControlName="publisher"
+                 tuiTextfieldSize="s"
+                 [tuiTextfieldCleaner]="true"
+                 [pseudoFocus]="getError(bookForm.controls.publisher)"
+      >
+        Введите название издателя
+        <input
+          tuiTextfield
+          type="email"
+        />
+      </tui-input>
+    </label>
+    <label [tuiLabel]="'Год выпуска'" class="tui-form__row">
+      <tui-input-year
+        class="b-form"
+        formControlName="year"
+        [tuiTextfieldCleaner]="true"
+        [tuiTextfieldSize]="'s'"
+        [max]="2023"
+      >
+        Выберите год
+        <input
+          placeholder="Не более 2023"
+          tuiTextfield
+        />
+      </tui-input-year>
+    </label>
+    <div class="tui-form__row tui-form__buttons tui-form__buttons_align_center">
+      <button
+        tuiButton
+        tuiTextfieldSize="s"
+        type="button"
+        size="s"
+        class="tui-form__button"
+        [appearance]="'primary'"
+        (click)="addBook()"
+      >
+        Добавить книгу
+      </button>
+    </div>
+  </div>
+  <div class="table-wrapper">
+
+    <table
+      tuiTable
+      class="table"
+      [columns]="columns"
+    >
+      <thead tuiThead>
+      <tr>
+        <th tuiTh [colSpan]="columns.length">
+          Книги
+        </th>
+      </tr>
+      <tr tuiThGroup>
+        <ng-container *ngFor="let column of tableColumns">
+          <th
+            *tuiHead="column.id"
+            [sorter]="getTableSorter(column.id)"
+            [sticky]="true"
+            tuiTh
+          >
+            {{column.label}}
+          </th>
+        </ng-container>
+      </tr>
+      </thead>
+      <tbody
+        *tuiLet="books | tuiTableSort as sortedBooks"
+        tuiTbody
+        [data]="sortedBooks"
+      >
+      <tr tuiTr *ngFor="let item of sortedBooks">
+        <ng-container *ngFor="let cell of tableColumns">
+          <td
+            *tuiCell="cell.id"
+            tuiTd
+          >
+            {{ item[cell.id] }}
+          </td>
+        </ng-container>
+      </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!books.length" class="no-data">
+      Нет данных для отображения
+    </div>
+
+  </div>
+</section>

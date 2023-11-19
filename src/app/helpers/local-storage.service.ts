@@ -10,24 +10,20 @@ export class LocalStorageService {
 
   public getAuthors(): AuthorT[] {
     let result = this.getItemFromLocalStorage(this.authorsKey);
-    if (result) {
-      return JSON.parse(JSON.parse(result));
-    } else {
-      return [];
-    }
+    return result ? (JSON.parse(result)) : [];
   }
 
   public setAuthors(authors: AuthorT[]): void {
-    this.setItemToLocalStorage(this.authorsKey, JSON.stringify(authors));
+    this.setItemToLocalStorage(this.authorsKey, authors);
   }
 
   public getBooks(): BookT[] {
     let result = this.getItemFromLocalStorage(this.booksKey);
-    return result ? JSON.parse(result) : [];
+    return result ? (JSON.parse(result)) : [];
   }
 
   public setBooks(books: BookT[]): void {
-    this.setItemToLocalStorage(this.booksKey, JSON.stringify(books));
+    this.setItemToLocalStorage(this.booksKey, books);
   }
 
   private getItemFromLocalStorage(key: string): string | null {
