@@ -1,7 +1,7 @@
 export type AuthorT = {
   id: number,
-  name: string,
-  lastName: string,
+  firstname: string,
+  lastname: string,
   surname: string,
   dateOfBirth: string, // ISO-string
 }

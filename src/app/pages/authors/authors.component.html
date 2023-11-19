@@ -1,1 +1,64 @@
-<p>authors works!</p>
+<section class="page-wrapper">
+  <div class="form-wrapper tui-form" [formGroup]="authorForm">
+    <label [tuiLabel]="'Имя'" class="tui-form__row">
+      <tui-input formControlName="firstname"
+                 tuiTextfieldSize="s"
+                 [tuiTextfieldCleaner]="true"
+                 [pseudoFocus]="getError(authorForm.controls.firstname)"
+      >
+        Введите имя
+        <input
+          tuiTextfield
+          type="email"
+        />
+      </tui-input>
+    </label>
+    <label [tuiLabel]="'Фамилия'" class="tui-form__row">
+      <tui-input formControlName="lastname"
+                 tuiTextfieldSize="s"
+                 [tuiTextfieldCleaner]="true"
+                 [pseudoFocus]="getError(authorForm.controls.lastname)"
+      >
+        Введите фамилию
+        <input
+          tuiTextfield
+          type="email"
+        />
+      </tui-input>
+    </label>
+    <label [tuiLabel]="'Отчество'" class="tui-form__row">
+      <tui-input formControlName="surname"
+                 tuiTextfieldSize="s"
+                 [tuiTextfieldCleaner]="true"
+                 [pseudoFocus]="getError(authorForm.controls.surname)"
+      >
+        Введите отчество
+        <input
+          tuiTextfield
+          type="email"
+        />
+      </tui-input>
+    </label>
+    <label [tuiLabel]="'Дата рождения'" class="tui-form__row">
+
+      <tui-input-date
+        formControlName="dateOfBirth"
+        tuiUnfinishedValidator="Закончите заполнение поля"
+      >
+        Выберите дату
+      </tui-input-date>
+    </label>
+    <div class="tui-form__row tui-form__buttons tui-form__buttons_align_center">
+      <button
+        tuiButton
+        tuiTextfieldSize="s"
+        type="button"
+        class="tui-form__button"
+        [appearance]="'primary'"
+        (click)="addAuthor()"
+      >
+        Добавить автора
+      </button>
+    </div>
+  </div>
+</section>
