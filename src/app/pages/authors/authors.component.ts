@@ -44,7 +44,7 @@ export class AuthorsComponent implements OnInit {
   }
 
   getAuthors() {
-    this.authors = this.lsService.getAuthors();
+    this.authors = this.lsService.getAuthors().sort((a, b) => a.lastname.localeCompare(b.lastname));
   }
 
   getError(control: AbstractControl): boolean {

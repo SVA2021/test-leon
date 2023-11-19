@@ -71,33 +71,38 @@
       [columns]="columns"
     >
       <thead>
-      <tr >
+      <tr>
         <th tuiTh [colSpan]="columns.length">
           Авторы
         </th>
       </tr>
-      <tr >
+      <tr tuiThGroup>
         <ng-container *ngFor="let column of tableColumns">
-          <th tuiTh>
+          <th
+            tuiTh>
             {{column.label}}
           </th>
         </ng-container>
       </tr>
       </thead>
       <tbody
-        tuiTbody
         *ngIf="authors.length"
+        tuiTbody
         [data]="authors"
       >
-      <tr tuiTr *ngFor="let author of authors">
+      <tr tuiTr *ngFor="let item of authors">
         <ng-container *ngFor="let cell of tableColumns">
           <td tuiTd>
-            {{ author?.[cell.id] }}
+            {{ item[cell.id] }}
           </td>
         </ng-container>
       </tr>
       </tbody>
     </table>
+
+    <div *ngIf="!authors.length" class="no-data">
+      Нет данных для отображения
+    </div>
 
   </div>
 </section>
