@@ -4,11 +4,12 @@ import {CommonModule} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
 import {TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE} from '@taiga-ui/i18n';
 import {of} from "rxjs";
+import {HeaderComponent} from "./components/header/header.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TuiRootModule, TuiDialogModule, TuiAlertModule],
+  imports: [CommonModule, RouterOutlet, TuiRootModule, TuiDialogModule, TuiAlertModule, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',
   providers: [
