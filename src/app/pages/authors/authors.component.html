@@ -44,6 +44,7 @@
       <tui-input-date
         formControlName="dateOfBirth"
         tuiUnfinishedValidator="Закончите заполнение поля"
+        tuiTextfieldSize="s"
       >
         Выберите дату
       </tui-input-date>
@@ -53,6 +54,7 @@
         tuiButton
         tuiTextfieldSize="s"
         type="button"
+        size="s"
         class="tui-form__button"
         [appearance]="'primary'"
         (click)="addAuthor()"
@@ -60,5 +62,42 @@
         Добавить автора
       </button>
     </div>
+  </div>
+  <div class="table-wrapper">
+
+    <table
+      tuiTable
+      class="table"
+      [columns]="columns"
+    >
+      <thead>
+      <tr >
+        <th tuiTh [colSpan]="columns.length">
+          Авторы
+        </th>
+      </tr>
+      <tr >
+        <ng-container *ngFor="let column of tableColumns">
+          <th tuiTh>
+            {{column.label}}
+          </th>
+        </ng-container>
+      </tr>
+      </thead>
+      <tbody
+        tuiTbody
+        *ngIf="authors.length"
+        [data]="authors"
+      >
+      <tr tuiTr *ngFor="let author of authors">
+        <ng-container *ngFor="let cell of tableColumns">
+          <td tuiTd>
+            {{ author?.[cell.id] }}
+          </td>
+        </ng-container>
+      </tr>
+      </tbody>
+    </table>
+
   </div>
 </section>

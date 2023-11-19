@@ -1,23 +1,32 @@
 import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AuthorT} from "../../helpers/models";
+import {AuthorT, TableColumnT} from "../../helpers/models";
 import {LocalStorageService} from "../../helpers/local-storage.service";
 import {AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {TuiDay} from "@taiga-ui/cdk";
 import {TuiAlertService, TuiButtonModule, TuiLabelModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
 import {DateService} from "../../helpers/date.service";
 import {TuiInputDateModule, TuiInputModule} from "@taiga-ui/kit";
+import {TuiTableModule} from "@taiga-ui/addon-table";
 
 @Component({
   selector: 'app-authors',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TuiInputModule, TuiLabelModule, TuiTextfieldControllerModule, TuiButtonModule, TuiInputDateModule],
+  imports: [CommonModule, ReactiveFormsModule, TuiInputModule, TuiLabelModule, TuiTextfieldControllerModule, TuiButtonModule, TuiInputDateModule, TuiTableModule],
   templateUrl: './authors.component.html',
   styleUrl: './authors.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthorsComponent implements OnInit {
   public authors: AuthorT[] = [];
+  public tableColumns: TableColumnT<keyof AuthorT>[] = [
+    {id: 'id', label: 'ID'},
+    {id: 'firstname', label: 'Имя',},
+    {id: 'lastname', label: 'Фамилия',},
+    {id: 'surname', label: 'Отчество',},
+    {id: 'dateOfBirth', label: 'Дата рождения',},
+  ];
+  public columns: string[] = this.tableColumns.map(c => c.id);
 
   readonly authorForm = new FormGroup({
     firstname: new FormControl<string | null>(null, [Validators.required]),
