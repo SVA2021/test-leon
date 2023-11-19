@@ -11,7 +11,7 @@ export class DateService {
   }
 
   convertTuiDayToISOString(date: TuiDay): string {
-    return this.convertTuiDayToDate(date).toISOString();
+    return this.convertTuiDayToDate(date).toISOString().substring(0, 10);
   }
 
   convertIsoStringToDate(date: string): Date {

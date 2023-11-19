@@ -10,7 +10,11 @@ export class LocalStorageService {
 
   public getAuthors(): AuthorT[] {
     let result = this.getItemFromLocalStorage(this.authorsKey);
-    return result ? JSON.parse(result) : [];
+    if (result) {
+      return JSON.parse(JSON.parse(result));
+    } else {
+      return [];
+    }
   }
 
   public setAuthors(authors: AuthorT[]): void {

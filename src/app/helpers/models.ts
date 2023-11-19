@@ -13,3 +13,8 @@ export type BookT = {
   year: number,
   publisher: string,
 }
+
+export type TableColumnT<T> = {
+  id: T,
+  label: string,
+}
